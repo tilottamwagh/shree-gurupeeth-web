@@ -5,7 +5,7 @@ import DailyPanchang from "./DailyPanchang";
 import {translate,type Language} from "./translations";
 type Entry={title:string;text:string;image?:string};
 type AartiGroup={title:string;items:Entry[]};
-const compactCharitraText=(text:string)=>text.replace(/\r/g,"").split("\n").map(line=>line.trim()).filter(Boolean).join("\n");
+const compactCharitraText=(text:string)=>text.replace(/\r/g,"").split("\n").map(line=>line.trim()).filter(Boolean).map(line=>/\u0965\u0965\s*[\u0966-\u096F0-9]+\s*\u0965\u0965\s*$/.test(line)?`${line}\n`:line).join("\n");
 const drawerItems=[
  {id:"home",label:"मुख्यपृष्ठ",icon:"⌂"},{id:"about",label:"श्री गुरुपीठ",icon:"◆"},{id:"swami",label:"श्री स्वामी समर्थ",icon:"॥"},{id:"gurupranali",label:"गुरुप्रणाली",icon:"ॐ"},
  {id:"nitya",label:"नित्यसेवा",icon:"☼"},{id:"aarti",label:"आरती संग्रह",icon:"♨"},{id:"charitra",label:"स्वामी चरित्र सारामृत",icon:"▤"},{id:"jap",label:"मंत्रजप",icon:"●"},
