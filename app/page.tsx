@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import confetti from "canvas-confetti";
 import {useEffect,useState,type CSSProperties} from "react";
 import DailyPanchang from "./DailyPanchang";
 import {translate,type Language} from "./translations";
@@ -82,7 +81,8 @@ export default function Home(){
  },[view,aartiReload]);
  function openService(id:string){setMenuOpen(false);setSelected(null);if(id==="jap")setOpen(true);else setView(id)}
  function openInfoItem(item:string){if(view==="guide"&&item==="आजचे पंचांग"){setView("calendar");return}setSelected({title:item,text:view==="guide"?(guideDetails[item]||""):item+" या विभागाची सविस्तर माहिती लवकरच उपलब्ध होईल."})}
- function runSaveConfetti(){
+ async function runSaveConfetti(){
+  const {default:confetti}=await import("canvas-confetti");
   const duration=5*1000;
   const animationEnd=Date.now()+duration;
   const defaults={startVelocity:30,spread:360,ticks:60,zIndex:95,disableForReducedMotion:true};
@@ -95,7 +95,8 @@ export default function Home(){
    confetti({...defaults,particleCount,origin:{x:randomInRange(.7,.9),y:Math.random()-.2}});
   },250)
  }
- function runSaveSideCannons(){
+ async function runSaveSideCannons(){
+  const {default:confetti}=await import("canvas-confetti");
   const end=Date.now()+3*1000;
   const colors=["#a786ff","#fd8bbc","#eca184","#f8deb1"];
   const frame=()=>{
