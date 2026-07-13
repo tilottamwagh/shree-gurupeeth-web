@@ -115,5 +115,6 @@ export const translations:Record<string,string>={
   "स्वामी चरित्र वाचन पूर्ण!": "Swami Charitra reading complete!",
   "← मागील अध्याय": "← Previous chapter",
   "← अध्याय सूची": "← Chapter list",
+  "अध्याय प्रगती जतन झाली!": "Chapter progress saved!",
 };
 export function translate(value:string,language:Language){return language==="en"?(translations[value]||value):value}
