@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import confetti from "canvas-confetti";
 import {useEffect,useState,type CSSProperties} from "react";
 import DailyPanchang from "./DailyPanchang";
 import {translate,type Language} from "./translations";
@@ -81,7 +82,20 @@ export default function Home(){
  },[view,aartiReload]);
  function openService(id:string){setMenuOpen(false);setSelected(null);if(id==="jap")setOpen(true);else setView(id)}
  function openInfoItem(item:string){if(view==="guide"&&item==="आजचे पंचांग"){setView("calendar");return}setSelected({title:item,text:view==="guide"?(guideDetails[item]||""):item+" या विभागाची सविस्तर माहिती लवकरच उपलब्ध होईल."})}
- function saveCharitraProgress(){if(view!=="charitra"||!selected)return;const chapter=entries.indexOf(selected)+1;if(chapter<1)return;const next=Math.max(savedCharitra,chapter);setSavedCharitra(next);localStorage.setItem("gurupeeth-charitra-progress",String(next))}
+ function runSaveConfetti(){
+  const duration=5*1000;
+  const animationEnd=Date.now()+duration;
+  const defaults={startVelocity:30,spread:360,ticks:60,zIndex:95,disableForReducedMotion:true};
+  const randomInRange=(min:number,max:number)=>Math.random()*(max-min)+min;
+  const interval=window.setInterval(()=>{
+   const timeLeft=animationEnd-Date.now();
+   if(timeLeft<=0){window.clearInterval(interval);return}
+   const particleCount=50*(timeLeft/duration);
+   confetti({...defaults,particleCount,origin:{x:randomInRange(.1,.3),y:Math.random()-.2}});
+   confetti({...defaults,particleCount,origin:{x:randomInRange(.7,.9),y:Math.random()-.2}});
+  },250)
+ }
+ function saveCharitraProgress(){if(view!=="charitra"||!selected)return;const chapter=entries.indexOf(selected)+1;if(chapter<1)return;const next=Math.max(savedCharitra,chapter);setSavedCharitra(next);localStorage.setItem("gurupeeth-charitra-progress",String(next));runSaveConfetti()}
  function readNextCharitraChapter(){if(selectedChapter<1||selectedChapter>=entries.length)return;const progress=Math.max(savedCharitra,selectedChapter);setSavedCharitra(progress);localStorage.setItem("gurupeeth-charitra-progress",String(progress));setSelected(entries[selectedChapter]);requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"})))}
  function completeCharitraAndRestart(){if(selectedChapter!==entries.length||savedCharitra<entries.length-1||celebrating)return;const total=charitraCompletions+1;setCharitraCompletions(total);localStorage.setItem("gurupeeth-charitra-completions",String(total));setCelebrationMessage(t("स्वामी चरित्र वाचन पूर्ण!"));setCelebrating(true);window.setTimeout(()=>{setCelebrating(false);setSavedCharitra(0);localStorage.setItem("gurupeeth-charitra-progress","0");setSelected(entries[0]);requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"})))},4000)}
  const selectedChapter=selected?entries.indexOf(selected)+1:0;
