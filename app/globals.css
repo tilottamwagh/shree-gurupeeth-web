@@ -58,4 +58,4 @@ html[data-theme="dark"] .drawer{background:#1d1915!important;border-color:#4c3c3
 
 
 /* Guaranteed visual separation after every numbered Charitra verse. */
-.charitra-text{white-space:normal!important}.charitra-line{display:block;min-height:1.48em}.charitra-verse-end{margin-bottom:1.5em}.charitra-verse-end:last-child{margin-bottom:0}@media(max-width:600px){.charitra-verse-end{margin-bottom:1.35em}}
+.charitra-text{white-space:normal!important}.charitra-line{display:block;min-height:1.48em}.charitra-verse-end{margin-bottom:2.4em}.charitra-verse-end:last-child{margin-bottom:0}@media(max-width:600px){.charitra-verse-end{margin-bottom:2em}}

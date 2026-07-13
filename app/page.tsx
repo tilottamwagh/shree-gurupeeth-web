@@ -6,7 +6,7 @@ import {translate,type Language} from "./translations";
 type Entry={title:string;text:string;image?:string};
 type AartiGroup={title:string;items:Entry[]};
 const charitraLines=(text:string)=>text.replace(/\r/g,"").split("\n").map(line=>line.trim()).filter(Boolean);
-const isCharitraVerseEnd=(line:string)=>/\u0965\u0965\s*[\u0966-\u096F0-9]+\s*\u0965\u0965\s*$/.test(line);
+const isCharitraVerseEnd=(line:string)=>/[\u0964\u0965|]+\s*[\u0966-\u096F0-9]+\s*[\u0964\u0965|]+\s*$/.test(line);
 const drawerItems=[
  {id:"home",label:"मुख्यपृष्ठ",icon:"⌂"},{id:"about",label:"श्री गुरुपीठ",icon:"◆"},{id:"swami",label:"श्री स्वामी समर्थ",icon:"॥"},{id:"gurupranali",label:"गुरुप्रणाली",icon:"ॐ"},
  {id:"nitya",label:"नित्यसेवा",icon:"☼"},{id:"aarti",label:"आरती संग्रह",icon:"♨"},{id:"charitra",label:"स्वामी चरित्र सारामृत",icon:"▤"},{id:"jap",label:"मंत्रजप",icon:"●"},
