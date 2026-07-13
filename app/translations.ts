@@ -88,6 +88,12 @@ export const translations:Record<string,string>={
   "पंचांगातील वेळा दिंडोरी, नाशिक या स्थानासाठी सूर्योदयाधारित खगोलशास्त्रीय गणनेनुसार दररोज आपोआप अद्ययावत होतात.": "Panchang timings update automatically every day using sunrise-based astronomical calculations for Dindori, Nashik.",
   "मोजण्यासाठी स्पर्श करा": "Tap to count",
   "पुन्हा सुरू करा": "Reset",
-  "माळा": "malas"
+  "माळा": "malas",
+  "अध्याय प्रगती जतन करा": "Save chapter progress",
+  "या अध्यायापर्यंत वाचन पूर्ण म्हणून जतन होईल.": "All chapters up to this one will be marked as completed.",
+  "✓ प्रगती जतन झाली": "✓ Progress saved",
+  "प्रगती जतन करा": "Save progress",
+  "जतन केलेली प्रगती": "Saved progress",
+  "पुढील अध्याय वाचा →": "Read next chapter →",
 };
 export function translate(value:string,language:Language){return language==="en"?(translations[value]||value):value}
