@@ -106,5 +106,6 @@ export const translations:Record<string,string>={
   "विवाह, वास्तुशांती, गृहप्रवेश आणि इतर संस्कारांसाठी मुहूर्त वैयक्तिक जन्मकुंडली व स्थानानुसार बदलतो. अंतिम मुहूर्त निश्चित करण्यासाठी अधिकृत पंचांग आणि जाणकारांचा सल्ला घ्यावा.": "The Muhurta for marriage, Vastu Shanti, house-warming and other ceremonies varies with the person's birth chart and location. Consult an authoritative Panchang and a knowledgeable guide before finalising it.",
   "भिऊ नकोस, मी तुझ्या पाठीशी आहे. श्रद्धा, सेवा आणि सातत्यपूर्ण साधना यांतून मनाला स्थैर्य व जीवनाला योग्य दिशा मिळते.": "Do not fear; I am with you. Faith, service and consistent spiritual practice bring steadiness to the mind and direction to life.",
   "या विभागाचा सविस्तर मजकूर मूळ अनुप्रयोगामध्ये संकेतस्थळावरून येतो. अनुप्रयोगात उपलब्ध नसलेली माहिती अंदाजाने दाखवलेली नाही.": "Detailed content for this section is supplied to the original app by its website. Information unavailable in the app has not been guessed.",
+  "चरित्र वाचन पूर्ण ✓": "Charitra reading complete ✓",
 };
 export function translate(value:string,language:Language){return language==="en"?(translations[value]||value):value}
