@@ -69,7 +69,7 @@ export const translations:Record<string,string>={
   "आध्यात्मिक आणि सामाजिक कार्य": "Spiritual and Social Work",
   "सेवेतून समाजकल्याण": "Social Welfare through Seva",
   "सेवा मार्गाचे सामाजिक उपक्रम": "Social Initiatives of Seva Marg",
-  "आजचे दाते पंचांग": "Today's Date Panchang",
+  "आजचे पंचांग": "Today's Panchang",
   "श्री क्षेत्र दिंडोरी, नाशिक • भारतीय प्रमाणवेळ": "Shri Kshetra Dindori, Nashik • Indian Standard Time",
   "शक": "Shaka",
   "अयन - ऋतू": "Ayana - Season",

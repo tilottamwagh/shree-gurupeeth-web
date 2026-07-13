@@ -52,5 +52,5 @@ export default function DailyPanchang({language="mr"}:{language?:Language}){
   ["सूर्य उदय - अस्त",fmtTime(p.sunrise)+" - "+fmtTime(p.sunset)],
   ["चंद्र उदय - अस्त",fmtTime(p.moonrise)+" - "+fmtTime(p.moonset)]
  ];
- return <div className="daily-panchang"><div className="panchang-title"><div><small>श्री स्वामी समर्थ</small><h2>{t("आजचे दाते पंचांग")}</h2></div><div className="panchang-date"><b>{date}</b><span>{day}</span></div></div><div className="panchang-location">{t("श्री क्षेत्र दिंडोरी, नाशिक • भारतीय प्रमाणवेळ")}</div><dl>{rows.map(([label,value])=><div key={label}><dt>{t(label)}</dt><dd>{value||"—"}</dd></div>)}</dl><p className="panchang-note">{t("पंचांगातील वेळा दिंडोरी, नाशिक या स्थानासाठी सूर्योदयाधारित खगोलशास्त्रीय गणनेनुसार दररोज आपोआप अद्ययावत होतात.")}</p></div>
+ return <div className="daily-panchang"><div className="panchang-title"><div><small>श्री स्वामी समर्थ</small><h2>{t("आजचे पंचांग")}</h2></div><div className="panchang-date"><b>{date}</b><span>{day}</span></div></div><div className="panchang-location">{t("श्री क्षेत्र दिंडोरी, नाशिक • भारतीय प्रमाणवेळ")}</div><dl>{rows.map(([label,value])=><div key={label}><dt>{t(label)}</dt><dd>{value||"—"}</dd></div>)}</dl><p className="panchang-note">{t("पंचांगातील वेळा दिंडोरी, नाशिक या स्थानासाठी सूर्योदयाधारित खगोलशास्त्रीय गणनेनुसार दररोज आपोआप अद्ययावत होतात.")}</p></div>
 }
