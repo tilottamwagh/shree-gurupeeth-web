@@ -1,0 +1,5 @@
+Asset: Confetti Effects Lottie Animation
+Creator: SM Rony
+Source: https://lottiefiles.com/free-animation/confetti-effects-lottie-animation-2naH1Qyz3l
+License: Lottie Simple License
+Bundled locally for this website.

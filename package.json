@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@ishubhamx/panchangam-js": "^3.0.0",
+    "@lottiefiles/dotlottie-react": "^0.19.9",
     "drizzle-orm": "0.45.2",
     "next": "16.2.6",
     "react": "19.2.6",
