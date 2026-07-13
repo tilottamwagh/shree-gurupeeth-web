@@ -113,5 +113,7 @@ export const translations:Record<string,string>={
   "चरित्र पूर्ण करा व पुन्हा सुरू करा →": "Complete and start again →",
   "आधीचे अध्याय पूर्ण करा": "Complete previous chapters first",
   "स्वामी चरित्र वाचन पूर्ण!": "Swami Charitra reading complete!",
+  "← मागील अध्याय": "← Previous chapter",
+  "← अध्याय सूची": "← Chapter list",
 };
 export function translate(value:string,language:Language){return language==="en"?(translations[value]||value):value}
