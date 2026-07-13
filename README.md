@@ -92,6 +92,21 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 - `npm test`: build the starter and verify its rendered loading skeleton
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
+## Deploy with Coolify
+
+Create an application from this Git repository and select **Dockerfile** as the
+build pack. Coolify will detect the root-level `Dockerfile` automatically.
+
+- Branch: `main`
+- Dockerfile location: `/Dockerfile`
+- Container port: `3000`
+- Health-check path: `/`
+- Environment variable: `PORT=3000`
+
+Point the domain's DNS `A` record to the VPS, add the HTTPS domain in Coolify,
+and deploy. Coolify's reverse proxy should route public ports 80/443 to the
+application's internal port 3000.
+
 ## Learn More
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
