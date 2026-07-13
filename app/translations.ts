@@ -114,5 +114,8 @@ export const translations:Record<string,string>={
   "आधीचे अध्याय पूर्ण करा": "Complete previous chapters first",
   "← मागील अध्याय": "← Previous chapter",
   "← अध्याय सूची": "← Chapter list",
+  "बंद करा": "Close",
+  "जप जतन करा": "Save chanting",
+  "✓ जप जतन झाला": "✓ Chanting saved",
 };
 export function translate(value:string,language:Language){return language==="en"?(translations[value]||value):value}
