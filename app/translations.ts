@@ -117,5 +117,7 @@ export const translations:Record<string,string>={
   "बंद करा": "Close",
   "जप जतन करा": "Save chanting",
   "✓ जप जतन झाला": "✓ Chanting saved",
+  "तारीख निवडा": "Select date",
+  "आजचा दिवस": "Today",
 };
 export function translate(value:string,language:Language){return language==="en"?(translations[value]||value):value}
