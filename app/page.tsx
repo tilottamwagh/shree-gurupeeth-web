@@ -5,14 +5,14 @@ type Entry={title:string;text:string};
 const drawerItems=[
  {id:"home",label:"मुख्यपृष्ठ",icon:"⌂"},{id:"about",label:"श्री गुरुपीठ",icon:"◆"},{id:"swami",label:"श्री स्वामी समर्थ",icon:"॥"},{id:"gurupranali",label:"गुरुप्रणाली",icon:"ॐ"},
  {id:"nitya",label:"नित्यसेवा",icon:"☼"},{id:"aarti",label:"आरती संग्रह",icon:"♨"},{id:"charitra",label:"स्वामी चरित्र सारामृत",icon:"▤"},{id:"jap",label:"मंत्रजप",icon:"●"},
- {id:"chandi",label:"अभ्यजा चंडी सेवा",icon:"✦"},{id:"guide",label:"स्वामी मार्गदर्शिका",icon:"▣"},{id:"festivals",label:"सण-वार व उत्सव",icon:"✺"},{id:"monthly",label:"मासिक सेवा",icon:"◫"},
+ {id:"chandi",label:"अभयजा चंडी सेवा",icon:"✦"},{id:"guide",label:"स्वामी मार्गदर्शिका",icon:"▣"},{id:"festivals",label:"सण-वार व उत्सव",icon:"✺"},{id:"monthly",label:"मासिक सेवा",icon:"◫"},
  {id:"activities",label:"सेवा मार्ग उपक्रम",icon:"✥"},{id:"publications",label:"प्रकाशन व साहित्य",icon:"▥"},{id:"charitable",label:"चॅरिटेबल सेवा",icon:"♡"},{id:"village",label:"ग्राम व सामाजिक विकास",icon:"⌘"},
  {id:"youtube",label:"व्हिडिओ व यूट्यूब",icon:"▶"},{id:"contact",label:"संपर्क",icon:"☎"}
 ];
 const services=[
  {id:"nitya",title:"नित्यसेवा",sub:"१४ स्तोत्र व मंत्र",img:"new_nitya_seva.png"},{id:"aarti",title:"आरती संग्रह",sub:"दैनिक आरती",img:"new_arti_sangrah.png"},
  {id:"charitra",title:"स्वामी चरित्र",sub:"२१ अध्याय",img:"new_swamicharitra.png"},{id:"jap",title:"मंत्रजप",sub:"जप मोजणी",img:"new_mantra_jap.png"},
- {id:"chandi",title:"अभ्यजा चंडी",sub:"सेवा व माहिती",img:"new_abjya_chandi.png"},{id:"guide",title:"मार्गदर्शिका",sub:"पंचांग व मुहूर्त",img:"new_margadarshika.png"},
+ {id:"chandi",title:"अभयजा चंडी",sub:"सेवा व माहिती",img:"new_abjya_chandi.png"},{id:"guide",title:"मार्गदर्शिका",sub:"पंचांग व मुहूर्त",img:"new_margadarshika.png"},
  {id:"festivals",title:"सण-वार",sub:"उत्सव दिनदर्शिका",img:"new_san_var.png"},{id:"myseva",title:"माझी सेवा",sub:"सेवा नोंद",img:"new_majhi_seva.png"}
 ];
 const centers=[["श्री गुरुपीठ","cardgurupeeth.png"],["श्री प्रसादालय","cardprasadalay.png"],["आयुर्वेदिक हॉस्पिटल","cardayuhospital.png"]];
@@ -26,7 +26,7 @@ const aboutSections=[
 ];
 const remoteInfo:Record<string,{title:string;intro:string;items:string[]}>= {
  aarti:{title:"आरती संग्रह",intro:"श्री स्वामी समर्थ सेवा मार्गातील दैनिक आरती संग्रह.",items:["श्री गणपती आरती","श्री स्वामी समर्थ आरती","श्री दत्त आरती","श्री दुर्गा देवी आरती"]},
- chandi:{title:"अभ्यजा चंडी सेवा",intro:"अभ्यजा चंडी सेवेची माहिती, नियम व सेवा क्रम.",items:["सेवा परिचय","सेवा संकल्प","पाठ क्रम","सेवा समर्पण"]},
+ chandi:{title:"अभयजा चंडी सेवा",intro:"अभयजा चंडी सेवेची माहिती, नियम व सेवा क्रम.",items:["सेवा परिचय","सेवा संकल्प","पाठ क्रम","सेवा समर्पण"]},
  guide:{title:"श्री स्वामी समर्थ मार्गदर्शिका",intro:"पंचांग, राहू काळ, शुभाशुभ कोष्टक, मुहूर्त आणि सुविचार.",items:["आजचे पंचांग","राहू काळ","शुभाशुभ कोष्टक","मुहूर्त","सुविचार"]},
  festivals:{title:"सण-वार व उत्सव",intro:"दिंडोरी प्रणीत उत्सव आणि भारतीय सणांची दिनदर्शिका.",items:["मासिक उत्सव","गुरुपीठ उत्सव","सण व विशेष दिवस"]},
  swami:{title:"श्री स्वामी समर्थ",intro:"श्री स्वामी समर्थ महाराजांचे जीवन, शिकवण आणि भक्तिमार्गाची ओळख.",items:["श्री स्वामी समर्थ परिचय","अक्कलकोट परंपरा","तारक मंत्र","सेवा संदेश"]},
