@@ -107,5 +107,10 @@ export const translations:Record<string,string>={
   "भिऊ नकोस, मी तुझ्या पाठीशी आहे. श्रद्धा, सेवा आणि सातत्यपूर्ण साधना यांतून मनाला स्थैर्य व जीवनाला योग्य दिशा मिळते.": "Do not fear; I am with you. Faith, service and consistent spiritual practice bring steadiness to the mind and direction to life.",
   "या विभागाचा सविस्तर मजकूर मूळ अनुप्रयोगामध्ये संकेतस्थळावरून येतो. अनुप्रयोगात उपलब्ध नसलेली माहिती अंदाजाने दाखवलेली नाही.": "Detailed content for this section is supplied to the original app by its website. Information unavailable in the app has not been guessed.",
   "चरित्र वाचन पूर्ण ✓": "Charitra reading complete ✓",
+  "पूर्ण स्वामी चरित्र वाचन": "Complete Swami Charitra readings",
+  "वेळा": "times",
+  "स्वामी चरित्र उघडा →": "Open Swami Charitra →",
+  "चरित्र पूर्ण करा व पुन्हा सुरू करा →": "Complete and start again →",
+  "आधीचे अध्याय पूर्ण करा": "Complete previous chapters first",
 };
 export function translate(value:string,language:Language){return language==="en"?(translations[value]||value):value}
