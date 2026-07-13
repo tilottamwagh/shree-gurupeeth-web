@@ -112,5 +112,7 @@ export const translations:Record<string,string>={
   "स्वामी चरित्र उघडा →": "Open Swami Charitra →",
   "चरित्र पूर्ण करा व पुन्हा सुरू करा →": "Complete and start again →",
   "आधीचे अध्याय पूर्ण करा": "Complete previous chapters first",
+  "अध्याय प्रगती जतन झाली!": "Chapter progress saved!",
+  "स्वामी चरित्र वाचन पूर्ण!": "Swami Charitra reading complete!",
 };
 export function translate(value:string,language:Language){return language==="en"?(translations[value]||value):value}
