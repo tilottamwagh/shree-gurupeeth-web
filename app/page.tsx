@@ -107,7 +107,22 @@ export default function Home(){
   };
   frame()
  }
- function saveCharitraProgress(){if(view!=="charitra"||!selected)return;const chapter=entries.indexOf(selected)+1;if(chapter<1)return;const next=Math.max(savedCharitra,chapter);setSavedCharitra(next);localStorage.setItem("gurupeeth-charitra-progress",String(next));runSaveConfetti();runSaveSideCannons()}
+ async function runSaveCustomShapes(){
+  const {default:confetti}=await import("canvas-confetti");
+  const scalar=2;
+  const triangle=confetti.shapeFromPath({path:"M0 10 L5 0 L10 10z"});
+  const square=confetti.shapeFromPath({path:"M0 0 L10 0 L10 10 L0 10 Z"});
+  const coin=confetti.shapeFromPath({path:"M5 0 A5 5 0 1 0 5 10 A5 5 0 1 0 5 0 Z"});
+  const tree=confetti.shapeFromPath({path:"M5 0 L10 10 L0 10 Z"});
+  const defaults={spread:360,ticks:60,gravity:0,decay:.96,startVelocity:20,shapes:[triangle,square,coin,tree],scalar,zIndex:95,disableForReducedMotion:true};
+  const shoot=()=>{
+   confetti({...defaults,particleCount:30});
+   confetti({...defaults,particleCount:5});
+   confetti({...defaults,particleCount:15,scalar:scalar/2,shapes:["circle"]})
+  };
+  window.setTimeout(shoot,0);window.setTimeout(shoot,100);window.setTimeout(shoot,200)
+ }
+ function saveCharitraProgress(){if(view!=="charitra"||!selected)return;const chapter=entries.indexOf(selected)+1;if(chapter<1)return;const next=Math.max(savedCharitra,chapter);setSavedCharitra(next);localStorage.setItem("gurupeeth-charitra-progress",String(next));runSaveConfetti();runSaveSideCannons();runSaveCustomShapes()}
  function readNextCharitraChapter(){if(selectedChapter<1||selectedChapter>=entries.length)return;const progress=Math.max(savedCharitra,selectedChapter);setSavedCharitra(progress);localStorage.setItem("gurupeeth-charitra-progress",String(progress));setSelected(entries[selectedChapter]);requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"})))}
  function completeCharitraAndRestart(){if(selectedChapter!==entries.length||savedCharitra<entries.length-1||celebrating)return;const total=charitraCompletions+1;setCharitraCompletions(total);localStorage.setItem("gurupeeth-charitra-completions",String(total));setCelebrationMessage(t("स्वामी चरित्र वाचन पूर्ण!"));setCelebrating(true);window.setTimeout(()=>{setCelebrating(false);setSavedCharitra(0);localStorage.setItem("gurupeeth-charitra-progress","0");setSelected(entries[0]);requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"})))},4000)}
  const selectedChapter=selected?entries.indexOf(selected)+1:0;
