@@ -1,6 +1,7 @@
 "use client";
 import {useEffect,useMemo,useState} from "react";
 import {getPanchangam,Observer,tithiNames,nakshatraNames,yogaNames} from "@ishubhamx/panchangam-js";
+import {translate,type Language} from "./translations";
 
 const observer=new Observer(20.203,73.827,550);
 const names:Record<string,string>={
@@ -20,32 +21,36 @@ const rashi=(v:any)=>typeof v==="number"?rashiNamesMr[v]:(tr(v?.name??v));
 const time=(d:Date|null|undefined)=>d?mr(new Intl.DateTimeFormat("mr-IN",{timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit",hour12:false}).format(d)):"—";
 const end=(name:string,d:Date|null|undefined)=>d?tr(name)+" "+time(d)+" पर्यंत":tr(name);
 
-export default function DailyPanchang(){
+export default function DailyPanchang({language="mr"}:{language?:Language}){
  const [now,setNow]=useState(()=>new Date());
+ const t=(v:string)=>translate(v,language);
+ const value=(v:unknown)=>language==="en"?String(v??""):tr(v);
+ const fmtTime=(d:Date|null|undefined)=>d?(language==="en"?new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit",hour12:false}).format(d):time(d)):"—";
+ const endValue=(name:string,d:Date|null|undefined)=>d?value(name)+" "+fmtTime(d)+(language==="en"?" until":" पर्यंत"):value(name);
  useEffect(()=>{const id=setInterval(()=>setNow(new Date()),60000);return()=>clearInterval(id)},[]);
  const p:any=useMemo(()=>getPanchangam(now,observer,{timezoneOffset:330,calendarType:"amanta"}),[now.toLocaleDateString("en-CA",{timeZone:"Asia/Kolkata"})]);
- const date=mr(new Intl.DateTimeFormat("mr-IN",{timeZone:"Asia/Kolkata",day:"numeric",month:"long",year:"numeric"}).format(now));
- const day=tr(new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Kolkata",weekday:"long"}).format(now));
- const masa=tr(p.masa?.name)+(p.masa?.isAdhika?" (अधिक)":"");
+ const date=language==="en"?new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",day:"numeric",month:"long",year:"numeric"}).format(now):mr(new Intl.DateTimeFormat("mr-IN",{timeZone:"Asia/Kolkata",day:"numeric",month:"long",year:"numeric"}).format(now));
+ const day=value(new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Kolkata",weekday:"long"}).format(now));
+ const masa=value(p.masa?.name)+(p.masa?.isAdhika?(language==="en"?" (Adhika)":" (अधिक)"):"");
  const tithiName=tithiNames[p.tithi]||p.tithis?.[0]?.name;
  const nakName=nakshatraNames[p.nakshatra]||p.nakshatras?.[0]?.name;
  const yogaName=yogaNames[p.yoga]||p.yogas?.[0]?.name;
- const karanas=(p.karanas||[]).slice(0,2).map((x:any)=>end(x.name,x.endTime)).join(", ")||tr(p.karana);
+ const karanas=(p.karanas||[]).slice(0,2).map((x:any)=>endValue(x.name,x.endTime)).join(", ")||tr(p.karana);
  const rows=[
-  ["शक",mr(p.samvat?.shaka)+", "+tr(p.samvat?.samvatsara)+" संवत्सर"],
-  ["अयन - ऋतू",tr(p.ayana)+" - "+tr(p.ritu)],
-  ["मास पक्ष",masa+" "+tr(p.paksha)],
-  ["तिथी",end(tithiName,p.tithiEndTime)],
-  ["नक्षत्र",end(nakName,p.nakshatraEndTime)],
-  ["योग",end(yogaName,p.yogaEndTime)],
+  ["शक",mr(p.samvat?.shaka)+", "+value(p.samvat?.samvatsara)+" संवत्सर"],
+  ["अयन - ऋतू",value(p.ayana)+" - "+value(p.ritu)],
+  ["मास पक्ष",masa+" "+value(p.paksha)],
+  ["तिथी",endValue(tithiName,p.tithiEndTime)],
+  ["नक्षत्र",endValue(nakName,p.nakshatraEndTime)],
+  ["योग",endValue(yogaName,p.yogaEndTime)],
   ["करण",karanas],
-  ["चंद्रराशी",tr(p.moonRashi?.name)],
-  ["रविराशी - नक्षत्र",tr(p.sunRashi?.name)+" - "+tr(p.sunNakshatra?.name)],
+  ["चंद्रराशी",value(p.moonRashi?.name)],
+  ["रविराशी - नक्षत्र",value(p.sunRashi?.name)+" - "+value(p.sunNakshatra?.name)],
   ["गुरुराशी",rashi(p.planetaryPositions?.jupiter?.rashi)],
   ["शुक्रराशी",rashi(p.planetaryPositions?.venus?.rashi)],
-  ["राहुकाळ",time(p.rahuKalamStart)+" - "+time(p.rahuKalamEnd)],
-  ["सूर्य उदय - अस्त",time(p.sunrise)+" - "+time(p.sunset)],
-  ["चंद्र उदय - अस्त",time(p.moonrise)+" - "+time(p.moonset)]
+  ["राहुकाळ",fmtTime(p.rahuKalamStart)+" - "+fmtTime(p.rahuKalamEnd)],
+  ["सूर्य उदय - अस्त",fmtTime(p.sunrise)+" - "+fmtTime(p.sunset)],
+  ["चंद्र उदय - अस्त",fmtTime(p.moonrise)+" - "+fmtTime(p.moonset)]
  ];
- return <div className="daily-panchang"><div className="panchang-title"><div><small>श्री स्वामी समर्थ</small><h2>आजचे दाते पंचांग</h2></div><div className="panchang-date"><b>{date}</b><span>{day}</span></div></div><div className="panchang-location">श्री क्षेत्र दिंडोरी, नाशिक • भारतीय प्रमाणवेळ</div><dl>{rows.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value||"—"}</dd></div>)}</dl><p className="panchang-note">पंचांगातील वेळा दिंडोरी, नाशिक या स्थानासाठी सूर्योदयाधारित खगोलशास्त्रीय गणनेनुसार दररोज आपोआप अद्ययावत होतात.</p></div>
+ return <div className="daily-panchang"><div className="panchang-title"><div><small>श्री स्वामी समर्थ</small><h2>{t("आजचे दाते पंचांग")}</h2></div><div className="panchang-date"><b>{date}</b><span>{day}</span></div></div><div className="panchang-location">{t("श्री क्षेत्र दिंडोरी, नाशिक • भारतीय प्रमाणवेळ")}</div><dl>{rows.map(([label,value])=><div key={label}><dt>{t(label)}</dt><dd>{value||"—"}</dd></div>)}</dl><p className="panchang-note">{t("पंचांगातील वेळा दिंडोरी, नाशिक या स्थानासाठी सूर्योदयाधारित खगोलशास्त्रीय गणनेनुसार दररोज आपोआप अद्ययावत होतात.")}</p></div>
 }
