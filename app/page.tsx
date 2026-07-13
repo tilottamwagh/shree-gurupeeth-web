@@ -95,7 +95,18 @@ export default function Home(){
    confetti({...defaults,particleCount,origin:{x:randomInRange(.7,.9),y:Math.random()-.2}});
   },250)
  }
- function saveCharitraProgress(){if(view!=="charitra"||!selected)return;const chapter=entries.indexOf(selected)+1;if(chapter<1)return;const next=Math.max(savedCharitra,chapter);setSavedCharitra(next);localStorage.setItem("gurupeeth-charitra-progress",String(next));runSaveConfetti()}
+ function runSaveSideCannons(){
+  const end=Date.now()+3*1000;
+  const colors=["#a786ff","#fd8bbc","#eca184","#f8deb1"];
+  const frame=()=>{
+   if(Date.now()>end)return;
+   confetti({particleCount:2,angle:60,spread:55,startVelocity:60,origin:{x:0,y:.5},colors,zIndex:95,disableForReducedMotion:true});
+   confetti({particleCount:2,angle:120,spread:55,startVelocity:60,origin:{x:1,y:.5},colors,zIndex:95,disableForReducedMotion:true});
+   window.requestAnimationFrame(frame)
+  };
+  frame()
+ }
+ function saveCharitraProgress(){if(view!=="charitra"||!selected)return;const chapter=entries.indexOf(selected)+1;if(chapter<1)return;const next=Math.max(savedCharitra,chapter);setSavedCharitra(next);localStorage.setItem("gurupeeth-charitra-progress",String(next));runSaveConfetti();runSaveSideCannons()}
  function readNextCharitraChapter(){if(selectedChapter<1||selectedChapter>=entries.length)return;const progress=Math.max(savedCharitra,selectedChapter);setSavedCharitra(progress);localStorage.setItem("gurupeeth-charitra-progress",String(progress));setSelected(entries[selectedChapter]);requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"})))}
  function completeCharitraAndRestart(){if(selectedChapter!==entries.length||savedCharitra<entries.length-1||celebrating)return;const total=charitraCompletions+1;setCharitraCompletions(total);localStorage.setItem("gurupeeth-charitra-completions",String(total));setCelebrationMessage(t("स्वामी चरित्र वाचन पूर्ण!"));setCelebrating(true);window.setTimeout(()=>{setCelebrating(false);setSavedCharitra(0);localStorage.setItem("gurupeeth-charitra-progress","0");setSelected(entries[0]);requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:0,behavior:"smooth"})))},4000)}
  const selectedChapter=selected?entries.indexOf(selected)+1:0;
