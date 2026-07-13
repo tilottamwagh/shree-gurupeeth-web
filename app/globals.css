@@ -5,6 +5,7 @@
 .devotional-text{white-space:pre-wrap;font-family:Nunito,serif;font-size:19px;line-height:2;color:#352a23;background:#fff;border:1px solid var(--line);border-radius:18px;padding:clamp(22px,5vw,48px);margin-top:28px;box-shadow:0 14px 40px #5b351c0d}.loading{padding:45px;text-align:center;color:var(--orange)}.source-note{margin-top:34px!important;padding:16px 18px;border-left:4px solid var(--orange);background:#fff1dc;border-radius:8px;font-size:13px!important}.reader-page{max-width:950px}
 /* Preserve the original 540×960 portrait without cropping. */
 .hero{min-height:590px}
+.hero em{margin-bottom:24px;line-height:1.5}
 .portrait{height:520px;align-self:center;overflow:visible}
 .portrait img{width:auto;height:min(500px,52vw);max-width:100%;object-fit:contain;object-position:center}
 
