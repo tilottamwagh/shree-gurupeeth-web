@@ -121,5 +121,9 @@ export const translations:Record<string,string>={
   "आजचा दिवस": "Today",
   "वाचन पूर्ण": "Reading complete",
   "वाचनासाठी अध्याय उघडा": "Open chapter to read",
+  "\u0909\u092a\u093e\u0938\u0928\u093e \u0938\u0942\u091a\u0940": "Daily worship list",
+  "\u092e\u093e\u0917\u0940\u0932": "Previous",
+  "\u092a\u0941\u0922\u0940\u0932": "Next",
+  "\u0939\u0940 \u0936\u0947\u0935\u091f\u091a\u0940 \u0909\u092a\u093e\u0938\u0928\u093e \u0906\u0939\u0947": "This is the final daily worship",
 };
 export function translate(value:string,language:Language){return language==="en"?(translations[value]||value):value}
