@@ -21,7 +21,7 @@ export default function AboutPage({language,onBack}:AboutPageProps){
   <div className="lineage-timeline">
    {timeline.map((item,index)=><article className="lineage-item" key={item.titleEn}>
     <div className="lineage-marker"><span>{String(index+1).padStart(2,"0")}</span></div>
-    <div className="lineage-image"><Image unoptimized src={item.image} alt={mr?item.titleMr:item.titleEn} fill sizes="(max-width:760px) 92vw, 420px"/></div>
+    <div className={`lineage-image lineage-image-${index+1}`}><Image unoptimized src={item.image} alt={mr?item.titleMr:item.titleEn} width={1200} height={1200}/></div>
     <div className="lineage-copy">
      {item.period&&<span className="lineage-period">{item.period}</span>}
      <em>{index===0?(mr?"दिव्य परंपरा":"Divine tradition"):(mr?"गुरुपरंपरा":"Spiritual lineage")}</em>
