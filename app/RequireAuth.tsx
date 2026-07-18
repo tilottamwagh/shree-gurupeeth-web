@@ -12,12 +12,11 @@ export default function RequireAuth({children}:{children:ReactNode}){
   useEffect(()=>{
     setPersistence(auth,browserLocalPersistence).catch(()=>{});
     let heartbeat:ReturnType<typeof setInterval>|undefined;
-    const unsubscribe=onAuthStateChanged(auth,next=>{
+    const unsubscribe=onAuthStateChanged(auth,async next=>{
       setUser(next);
-      setReady(true);
       if(heartbeat)clearInterval(heartbeat);
-      if(!next) window.location.replace("/login");
-      else{updateLastSeen(next).catch(()=>{});startTrackedSession().catch(()=>{});heartbeat=setInterval(()=>{updateLastSeen(next).catch(()=>{});heartbeatSession().catch(()=>{})},120000)}
+      if(!next){setReady(true);window.location.replace("/login")}
+      else{updateLastSeen(next).catch(()=>{});await startTrackedSession().catch(()=>{});setReady(true);heartbeat=setInterval(()=>{updateLastSeen(next).catch(()=>{});heartbeatSession().catch(()=>{})},120000)}
     });
     const finish=()=>endTrackedSession().catch(()=>{});window.addEventListener("pagehide",finish);
     return()=>{unsubscribe();if(heartbeat)clearInterval(heartbeat);window.removeEventListener("pagehide",finish)};
