@@ -4,6 +4,7 @@ import {ReactNode, useEffect, useState} from "react";
 import {browserLocalPersistence, onAuthStateChanged, setPersistence, type User} from "firebase/auth";
 import {auth} from "./firebase";
 import {updateLastSeen} from "./activity";
+import {endTrackedSession,heartbeatSession,startTrackedSession} from "./analytics";
 
 export default function RequireAuth({children}:{children:ReactNode}){
   const [user,setUser]=useState<User|null>(null);
@@ -16,9 +17,10 @@ export default function RequireAuth({children}:{children:ReactNode}){
       setReady(true);
       if(heartbeat)clearInterval(heartbeat);
       if(!next) window.location.replace("/login");
-      else{updateLastSeen(next).catch(()=>{});heartbeat=setInterval(()=>updateLastSeen(next).catch(()=>{}),120000)}
+      else{updateLastSeen(next).catch(()=>{});startTrackedSession().catch(()=>{});heartbeat=setInterval(()=>{updateLastSeen(next).catch(()=>{});heartbeatSession().catch(()=>{})},120000)}
     });
-    return()=>{unsubscribe();if(heartbeat)clearInterval(heartbeat)};
+    const finish=()=>endTrackedSession().catch(()=>{});window.addEventListener("pagehide",finish);
+    return()=>{unsubscribe();if(heartbeat)clearInterval(heartbeat);window.removeEventListener("pagehide",finish)};
   },[]);
   if(!ready||!user)return <main className="auth-loading"><img src="/app-assets/guru-app-icon.png" alt=""/><span>॥ श्री स्वामी समर्थ ॥</span></main>;
   return <>{children}</>;
