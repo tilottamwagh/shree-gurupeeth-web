@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn() { return request.auth != null; }
+  function admin() { return signedIn() && request.auth.token.admin == true; }
+  match /users/{uid} { allow create, update: if signedIn() && request.auth.uid == uid; allow read: if admin(); }
+  match /loginEvents/{eventId} { allow create: if signedIn() && request.resource.data.uid == request.auth.uid; allow read: if admin(); allow update, delete: if false; }
+ }
+}
