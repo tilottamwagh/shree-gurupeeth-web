@@ -10,12 +10,15 @@ export default function RequireAuth({children}:{children:ReactNode}){
   const [ready,setReady]=useState(false);
   useEffect(()=>{
     setPersistence(auth,browserLocalPersistence).catch(()=>{});
-    return onAuthStateChanged(auth,next=>{
+    let heartbeat:ReturnType<typeof setInterval>|undefined;
+    const unsubscribe=onAuthStateChanged(auth,next=>{
       setUser(next);
       setReady(true);
+      if(heartbeat)clearInterval(heartbeat);
       if(!next) window.location.replace("/login");
-      else updateLastSeen(next).catch(()=>{});
+      else{updateLastSeen(next).catch(()=>{});heartbeat=setInterval(()=>updateLastSeen(next).catch(()=>{}),120000)}
     });
+    return()=>{unsubscribe();if(heartbeat)clearInterval(heartbeat)};
   },[]);
   if(!ready||!user)return <main className="auth-loading"><img src="/app-assets/guru-app-icon.png" alt=""/><span>॥ श्री स्वामी समर्थ ॥</span></main>;
   return <>{children}</>;
