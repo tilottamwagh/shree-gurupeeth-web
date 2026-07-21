@@ -6,6 +6,7 @@ import AboutPage from "./AboutPage";
 import AuthButton from "./AuthButton";
 import RequireAuth from "./RequireAuth";
 import {saveProgress,trackActivity} from "./analytics";
+import SiteAssistant from "./SiteAssistant";
 import {translate,type Language} from "./translations";
 type Entry={title:string;text:string;image?:string};
 type AartiGroup={title:string;items:Entry[]};
@@ -167,6 +168,7 @@ export default function Home(){
   {view==="calendar"&&<section className="page panchang-page"><button className="back" onClick={()=>setView("guide")}>← {t("स्वामी मार्गदर्शिका")}</button><DailyPanchang language={lang}/></section>}
   {view==="about"&&<AboutPage language={lang} onBack={()=>setView("home")}/>}
   {menuOpen&&<><button className="drawer-scrim" aria-label="मेनू बंद करा" onClick={()=>setMenuOpen(false)}/><aside className="drawer" aria-label="मुख्य मेनू"><div className="drawer-header"><Image className="brand-guru-image" unoptimized src="/app-assets/guru-app-icon.png" alt="श्री स्वामी समर्थ" width={58} height={58}/><div><b>{t("श्री गुरुपीठ")}</b><small>{t("दिंडोरी प्रणीत सेवा मार्ग")}</small></div><button aria-label={t("मेनू बंद करा")} onClick={()=>setMenuOpen(false)}>×</button></div><div className="drawer-list">{drawerItems.map((item,i)=><button key={item.id} onClick={()=>openService(item.id)} className={view===item.id?"active":""}><span>{item.icon}</span><b>{t(item.label)}</b>{i===3||i===11?<i/>:null}</button>)}</div><div className="drawer-footer">{t("॥ श्री स्वामी समर्थ ॥")}</div></aside></>}
+  <SiteAssistant language={lang} onOpenSection={section=>{setSelected(null);if(section==="jap")setOpen(true);else setView(section)}}/>
   <nav><button className={view==="home"?"active":""} onClick={()=>setView("home")}><span>⌂</span>{t("मुख्यपृष्ठ")}</button><button className={view==="nitya"?"active":""} onClick={()=>setView("nitya")}><span>ॐ</span>{t("नित्यसेवा")}</button><button onClick={()=>setOpen(true)}><span className="jap">{t("जप")}</span>{t("मंत्रजप")}</button><button className={view==="calendar"?"active":""} onClick={()=>setView("calendar")}><span>▣</span>{t("दिनदर्शिका")}</button><button className={view==="about"?"active":""} onClick={()=>setView("about")}><span>ⓘ</span>{t("माहिती")}</button></nav>
   {open&&<div className="overlay" role="dialog" aria-modal="true"><div className="counterbox"><button className="close" aria-label={t("बंद करा")} onClick={()=>setOpen(false)}>×</button><em>{t("श्री स्वामी समर्थ")}</em><h2>{t("मंत्रजप")}</h2><button className="counter" onClick={()=>{setCount(count+1);setJapSaved(false)}}><b>{lang==="mr"?toMarathiNumber(count):count}</b><small>{t("मोजण्यासाठी स्पर्श करा")}</small></button><footer><button onClick={resetMantraProgress}>{t("पुन्हा सुरू करा")}</button><button className={japSaved?"counter-save saved":"counter-save"} onClick={saveMantraProgress}>{japSaved?t("✓ जप जतन झाला"):t("जप जतन करा")}</button><b>{lang==="mr"?toMarathiNumber(Math.floor(count/108)):Math.floor(count/108)} {t("माळा")}</b></footer></div></div>}
  </main></RequireAuth>
