@@ -1,4 +1,4 @@
-import {addDoc,collection,doc,getFirestore,serverTimestamp,setDoc,updateDoc} from "firebase/firestore";
+import {addDoc,collection,doc,getDoc,getFirestore,serverTimestamp,setDoc,updateDoc} from "firebase/firestore";
 import {auth,app} from "./firebase";
 const db=getFirestore(app);
 const sessionKey="gurupeeth-session-id";
@@ -22,4 +22,9 @@ export async function trackActivity(type:string,data:Record<string,unknown>={}){
 export async function saveProgress(data:Record<string,unknown>){
  const user=currentUser();if(!user)return;
  await setDoc(doc(db,"userProgress",user.uid),{uid:user.uid,email:user.email||"",displayName:user.displayName||"",...data,updatedAt:serverTimestamp()},{merge:true});
+}
+export async function loadProgress(){
+ const user=currentUser();if(!user)return null;
+ const snapshot=await getDoc(doc(db,"userProgress",user.uid));
+ return snapshot.exists()?snapshot.data():null;
 }
