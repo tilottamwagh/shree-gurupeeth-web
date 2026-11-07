@@ -13,7 +13,7 @@ export default function AccountDeletionPage(){return <LegalPage title="Account a
   </ol>
   <p>This page is the external deletion-request route. In the app, open <b>Account</b> and choose <b>Delete account or request deletion</b> to reach these instructions. Signing out alone does not delete your account or cloud records.</p>
   <h2>Guest data</h2>
-  <p>Guest progress is stored only in the browser or device storage and is not linked to an account. Clear the app’s or browser’s site storage to remove it. Uninstalling the app may also clear its local data, depending on the device.</p>
+  <p>Guest progress and offline copies of signed-in progress are stored in browser or device storage. Clearing the app’s or browser’s site storage removes those local copies. A server-side account deletion request does not automatically clear storage on your device. Uninstalling the app may also clear its local data, depending on the device.</p>
   <h2>Retention</h2>
   <p>We will delete account-associated data when the request is verified, except for limited information that must be retained for legal compliance or legitimate security purposes. If anything must be retained, we will explain what and why in our response. For help, contact <a href="mailto:apps@dindoripranit.org">apps@dindoripranit.org</a>.</p>
 </LegalPage>}

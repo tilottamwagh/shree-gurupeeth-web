@@ -7,7 +7,7 @@
                 },
     "scripts":  {
                     "dev":  "vinext dev",
-                    "build":  "vinext build",
+                    "build":  "vinext build \u0026\u0026 node scripts/generate-offline-precache.mjs",
                     "start":  "vinext start",
                     "test":  "npm run build \u0026\u0026 node --test tests/rendered-html.test.mjs",
                     "lint":  "eslint . --ignore-pattern dist --ignore-pattern .next",
