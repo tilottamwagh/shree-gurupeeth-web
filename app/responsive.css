@@ -19,8 +19,9 @@ nav button{min-width:0;flex:1;padding:4px 2px;line-height:1.2}
 .counter{width:min(230px,58vw,34dvh);height:auto;aspect-ratio:1;margin:clamp(14px,3vh,24px) auto;border-width:clamp(7px,2vw,12px)}
 .counter b{font-size:clamp(38px,13vw,72px)}
 .drawer{padding-top:var(--device-safe-top);padding-bottom:var(--device-safe-bottom)}
-.auth-overlay{overflow-y:auto;overscroll-behavior:contain;align-items:center;padding:calc(12px + var(--device-safe-top)) max(12px,env(safe-area-inset-right)) calc(12px + var(--device-safe-bottom)) max(12px,env(safe-area-inset-left))}
-.auth-dialog{width:min(440px,100%);max-height:calc(100dvh - 24px - var(--device-safe-top) - var(--device-safe-bottom));overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:clamp(18px,5vw,30px)}
+.auth-overlay{display:flex;justify-content:center;align-items:center;overflow-y:auto;overscroll-behavior:contain;padding:calc(12px + var(--device-safe-top)) max(12px,env(safe-area-inset-right)) calc(12px + var(--device-safe-bottom)) max(12px,env(safe-area-inset-left))}
+.auth-dialog{width:min(440px,100%);max-height:calc(100dvh - 24px - var(--device-safe-top) - var(--device-safe-bottom));margin:auto;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:clamp(18px,5vw,30px)}
+.auth-close{position:sticky;top:0;z-index:5;display:grid;place-items:center;width:38px;height:38px;margin:-14px -14px -38px auto;border-radius:50%;background:#fffaf2ed}
 .auth-links{position:sticky;bottom:-1px;z-index:2;padding:12px 0 2px;margin-bottom:-2px;background:linear-gradient(180deg,#fffaf200 0%,#fffaf2 18px)}
 .auth-guest-link{min-height:44px!important;padding:10px 12px!important;border:1px solid var(--line)!important;border-radius:10px!important;background:#fff4e3!important}
 .assistant-launcher{bottom:calc(88px + var(--device-safe-bottom))}
@@ -138,7 +139,7 @@ html[data-theme="dark"] .auth-guest-link{background:#2c241c!important;border-col
   .list button{gap:7px;padding:15px 6px;align-items:center}
   .list span{width:38px;flex:none}
   .list b{min-width:0;overflow-wrap:anywhere}
-  .auth-overlay{place-items:center}
+  .auth-overlay{align-items:center;justify-content:center}
   .auth-dialog{border-radius:20px}
   .auth-mark{width:48px;height:48px;margin-bottom:8px}
   .auth-dialog h2{font-size:23px}
