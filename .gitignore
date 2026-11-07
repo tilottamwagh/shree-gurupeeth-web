@@ -42,5 +42,18 @@ next-env.d.ts
 /work/
 /store-assets/android/.capture-profile/
 
+# Android Studio and generated Bubblewrap project artifacts
+.idea/
+/android-twa/.gradle/
+/android-twa/build/
+/android-twa/app/build/
+/android-twa/local.properties
+/android-twa/android.keystore
+/android-twa/*.aab
+/android-twa/*.apk
+/android-twa/*.apk.idsig
+/android-twa/hs_err_pid*.log
+/android-twa/manifest-checksum.txt
+
 dev.*.log
 npm-ci.*.log
