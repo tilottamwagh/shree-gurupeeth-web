@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tilottamwagh.shreegurupeeth",
+      "sha256_cert_fingerprints": [
+        "8F:6B:22:70:35:9A:76:D1:FE:BD:6B:80:F5:C7:B0:1F:54:F1:63:00:61:A3:F7:68:D5:F0:E1:37:46:CF:EA:4C"
+      ]
+    }
+  }
+]
